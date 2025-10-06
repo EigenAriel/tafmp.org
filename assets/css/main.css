@@ -1,0 +1,652 @@
+:root {
+  --header-h: 84px;
+  /* 更小的 Header */
+  --brand: #0D2950;
+  --plum: #7A1B6E;
+  --paper: #FBFAF7;
+  --ink: #14151c;
+  --line: #E7E8EC;
+  --shadow: 0 10px 28px rgba(0, 0, 0, 0.10);
+  --side-grad-w: 300px;
+  /* 两侧渐变占位更窄 */
+}
+
+/* Reset & base */
+* {
+  box-sizing: border-box
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0
+}
+
+body {
+  font-family: "Songti SC", "Source Han Serif SC", "Noto Serif SC", "Times New Roman", serif;
+  color: var(--ink);
+  background:
+    linear-gradient(to right,
+      rgba(13, 41, 80, 1) 0, rgba(13, 41, 80, .45) 96px, rgba(13, 41, 80, 0) 192px) left / var(--side-grad-w) 100% no-repeat,
+    linear-gradient(to left,
+      rgba(122, 27, 110, 1) 0, rgba(122, 27, 110, .45) 96px, rgba(122, 27, 110, 0) 192px) right / var(--side-grad-w) 100% no-repeat,
+    var(--paper);
+  min-height: 100vh;
+}
+
+/* Header: 左标题两行，右侧菜单 */
+.site-header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: var(--header-h);
+  z-index: 1000
+}
+
+.site-header .layer-bg {
+  position: absolute;
+  inset: 0;
+  background: var(--brand)
+}
+
+.site-header .layer-mask {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, .18)
+}
+
+.site-header .layer-bottom-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: #fff
+}
+
+.site-header .inner {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 2px
+}
+
+.brand a {
+  text-decoration: none
+}
+
+.brand .cn {
+  font-size: 24px;
+  color: #f3f5ff;
+  line-height: 1
+}
+
+.brand .en {
+  font-size: 13px;
+  color: #e6e9f9;
+  opacity: .95;
+  line-height: 1
+}
+
+.nav-row {
+  display: flex;
+  align-items: center;
+  gap: 10px
+}
+
+.nav-row a,
+.nav-row button {
+  font-size: 15px;
+  color: #f3f6ff;
+  background: rgba(255, 255, 255, .08);
+  border: 1px solid rgba(255, 255, 255, .18);
+  padding: 6px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: .16s
+}
+
+.nav-row a:hover,
+.nav-row button:hover {
+  background: rgba(255, 255, 255, .16)
+}
+
+.dropdown {
+  position: relative
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 36px;
+  background: rgba(13, 41, 80, .96);
+  color: #fff;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  display: none;
+  min-width: 200px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .15)
+}
+
+.dropdown.open .dropdown-menu {
+  display: block
+}
+
+.dropdown-menu a {
+  font-size: 14.5px;
+  display: block;
+  padding: 8px 14px;
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, .10)
+}
+
+.dropdown-menu a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px
+}
+
+/* 统一的面板与标题样式 */
+.panel {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow)
+}
+
+.panel-title {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 700
+}
+
+/* 三个标题一致 */
+
+/* 容器更宽 */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 22px;
+  margin-top: calc(var(--header-h) + 16px);
+  margin-bottom: 56px
+}
+
+/* 顶部两块并排，介绍略宽 */
+.top-grid {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap: 16px;
+  align-items: stretch
+}
+
+.intro-block {
+  padding: 16px
+}
+
+.intro-wrap {
+  display: grid;
+  grid-template-columns: .85fr 1.15fr;
+  gap: 14px;
+  align-items: start
+}
+
+.intro-cover {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  padding: 10px;
+  display: flex
+}
+
+.intro-cover img {
+  width: 100%;
+  aspect-ratio: 210/297;
+  object-fit: cover;
+  border-radius: 6px
+}
+
+.intro-text {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #2b2b2b
+}
+
+/* 新闻面板 */
+.news-card {
+  padding: 14px
+}
+
+.news-list {
+  max-height: 260px;
+  overflow: auto
+}
+
+.news-item {
+  border-top: 1px solid #F0F1F4;
+  padding: 8px 0
+}
+
+.news-item:first-child {
+  border-top: none
+}
+
+.news-date {
+  font-size: 12px;
+  color: #6A7180
+}
+
+.news-title {
+  font-size: 13px
+}
+
+/* 底部章节网格 */
+.section-chapters {
+  margin-top: 16px;
+  padding: 16px
+}
+
+.chapter-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px
+}
+
+.chapter-card {
+  text-decoration: none;
+  color: inherit
+}
+
+.chapter-card .imgwrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 210/297;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow)
+}
+
+.chapter-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(.98) saturate(.97)
+}
+
+.chapter-card .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: .16s
+}
+
+.chapter-card:hover .overlay {
+  background: rgba(0, 0, 0, .12)
+}
+
+.chapter-card .overlay .icon {
+  width: 36px;
+  height: 36px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: .2s ease-out;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .28))
+}
+
+.chapter-card:hover .overlay .icon {
+  opacity: 1;
+  transform: translateY(0)
+}
+
+.caption {
+  text-align: center;
+  margin-top: 6px;
+  font-weight: 600;
+  font-size: 16px
+}
+
+.unpublished .imgwrap img {
+  filter: grayscale(.2) contrast(.9) brightness(.9)
+}
+
+/* 品牌按钮 */
+.btn {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, var(--brand), #0a1f3b);
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid rgba(0, 0, 0, .12);
+  cursor: pointer;
+  transition: transform .08s ease, box-shadow .16s ease, filter .16s ease;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .12)
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, .18)
+}
+
+/* 章节页：背景=封面（确保覆盖） */
+body.has-cover-bg {
+  --cover-overlay:
+    radial-gradient(120% 140% at 10% 10%, rgba(255, 255, 255, .30), transparent 45%),
+    radial-gradient(140% 160% at 90% 12%, rgba(255, 255, 255, .24), transparent 50%);
+  background:
+    var(--cover-overlay),
+    var(--cover-bg) center/cover no-repeat fixed,
+    var(--paper) !important;
+  /* 强制覆盖基础背景 */
+}
+
+/* 章节页容器与 PDF 视口（更小，显示完整 A4） */
+.chapter-container {
+  font-size: 16px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 22px;
+  margin-top: calc(var(--header-h) + 16px);
+  margin-bottom: 56px
+}
+
+.pdf-frame {
+  width: 100%;
+  aspect-ratio: 210/297;
+  height: auto;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  background: #fff
+}
+
+.pdf-note {
+  font-size: 12px;
+  color: #6A7180;
+  margin-top: 6px
+}
+
+/* Footer 深蓝 */
+.site-footer {
+  text-align: center;
+  color: #fff;
+  background: var(--brand);
+  padding: 16px 10px position: static !important;
+  /* 防止被设置成 fixed/absolute */
+  display: block;
+  clear: both;
+  /* 避免被左/右栏的布局“挤”到中间 */
+  width: 100%;
+  margin-top: 32px;
+  /* 和内容留一点间距 */
+}
+
+/* 响应式 */
+@media (max-width:1024px) {
+
+  .container,
+  .chapter-container {
+    max-width: 980px
+  }
+}
+
+@media (max-width:900px) {
+
+  .container,
+  .chapter-container {
+    max-width: 720px
+  }
+
+  .top-grid {
+    grid-template-columns: 1fr
+  }
+
+  .intro-wrap {
+    grid-template-columns: 1fr
+  }
+
+  .chapter-grid {
+    grid-template-columns: repeat(2, 1fr)
+  }
+}
+
+@media (max-width:560px) {
+  :root {
+    --side-grad-w: 0px
+  }
+
+  body {
+    background: var(--paper)
+  }
+
+  .container,
+  .chapter-container {
+    max-width: 94vw;
+    padding: 18px
+  }
+
+  .chapter-grid {
+    grid-template-columns: 1fr
+  }
+}
+
+
+
+/* === v10 adjustments === */
+
+/* Header布局更集中一些 */
+.site-header .inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* 顶部导航：扁平文字链接风格 */
+.nav-row a,
+.dropdown button {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  color: #fff;
+  font-weight: 600;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.nav-row a:hover,
+.dropdown button:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* 下拉菜单层级覆盖白线 */
+.dropdown {
+  position: relative;
+  z-index: 40;
+}
+
+.dropdown-menu {
+  z-index: 50;
+}
+
+/* 首页三个板块标题稍大 */
+.home .panel-title {
+  font-size: 20px;
+}
+
+/* 章节与释译者页标题依旧较大 */
+.chapter-container .panel-title,
+.about-page .panel-title {
+  font-size: 22px;
+}
+
+.about-page .panel p {
+  font-size: 16px;
+  /* 如需再大改 17/18 */
+  line-height: 1.8;
+}
+
+/* 章节页：PDF预览更小（保持A4比例），大约上一版的一半 */
+.pdf-frame {
+  max-width: 470px;
+  margin: 0 auto;
+  aspect-ratio: 210/297;
+}
+
+/* 章节页：下载PDF按钮恢复为默认大小 */
+.chapter-container .btn {
+  padding: 8px 12px;
+  font-size: inherit;
+}
+
+/* 覆盖背景为更稳定的伪元素，避免被其他背景覆盖 */
+body.has-cover-bg {
+  position: relative;
+  background: var(--paper) !important;
+  /* 基底 */
+}
+
+body.has-cover-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(120% 140% at 10% 10%, rgba(255, 255, 255, .22), transparent 46%),
+    radial-gradient(140% 160% at 90% 12%, rgba(255, 255, 255, .18), transparent 52%),
+    var(--cover-bg) center/cover no-repeat;
+  opacity: 0.77;
+  /* 比上一版更明显 */
+}
+
+/* 统一字体，确保任何控件都不“跳字体” */
+.btn,
+button,
+.nav-row a,
+.dropdown button,
+.dropdown-menu a,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+/* Header两端往中间收一些 */
+.nav-row {
+  gap: 10px;
+}
+
+.news-page .panel {
+  min-height: calc(100vh - var(--header-h) - 120px);
+}
+
+/* news 页面：让唯一的 panel 铺满可视高度，footer 落在最底部 */
+.news-page .container {
+  min-height: calc(100vh - var(--header-h) - 120px);
+  /* 120px ≈ 上下内边距+footer空间，可按视觉微调 */
+  display: flex;
+}
+
+.news-page .container>.panel {
+  flex: 1;
+  /* 面板占满容器高度 */
+  min-height: 100%;
+  /* 双保险 */
+}
+
+/* 确保本页 footer 不悬空 */
+.news-page .site-footer {
+  position: static !important;
+  clear: both;
+  width: 100%;
+  margin-top: 32px;
+}
+
+.news-page .panel-title {
+  font-size: 22px;
+}
+
+
+/* 章节页：恢复原列宽，PDF 不变；右侧文字贴近并填满右列 */
+.chapter-container .panel>div[style*="display:grid"] {
+  grid-template-columns: 2fr 2fr !important;
+  /* 回到原来的列比例，PDF 宽度不变 */
+  column-gap: 10px !important;
+  /* 中间缝隙；想更近可调 12/10 */
+}
+
+/* 右侧那列不要再有额外缩进，填满整列 */
+.chapter-container .panel>div[style*="display:grid"]>aside,
+.chapter-container .panel>div[style*="display:grid"]>div:last-child {
+  margin: 0 !important;
+  padding-left: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+}
+
+/* 右侧文字字号=16，不影响 PDF/按钮 */
+.chapter-container aside,
+.chapter-container aside p {
+  font-size: 16px !important;
+  line-height: 1.8 !important;
+  text-align: left !important;
+}
+
+/* === extend side gradients inward + nullify per-chapter covers === */
+
+/* A) 让两侧颜色更往里延伸：只改宽度变量即可 */
+body {
+  --side-grad-w: 500px !important;
+  /* 原来大概 300px，想再往里就调 480/520 */
+}
+
+/* （可选）如果你想“渐变过渡更长一点”，把下面这段替换掉 body 背景里的 64px/128px：
+   64px -> 96px，128px -> 192px。只需在你原本的 body 背景声明里改数值即可。
+   不改也行，仅调 --side-grad-w 就能明显更往里。 */
+
+/* B) 统一全站背景，禁用章节封面背景 */
+body.has-cover-bg {
+  /* 使用与 body 相同的侧边渐变背景，而不是封面图 */
+  background:
+    linear-gradient(to right,
+      rgba(13, 41, 80, 1) 0, rgba(13, 41, 80, .45) 96px, rgba(13, 41, 80, 0) 192px) left / var(--side-grad-w) 100% no-repeat,
+    linear-gradient(to left,
+      rgba(122, 27, 110, 1) 0, rgba(122, 27, 110, .45) 96px, rgba(122, 27, 110, 0) 192px) right / var(--side-grad-w) 100% no-repeat,
+    var(--paper) !important;
+  --cover-bg: none !important;
+  /* 即使页面内联了 --cover-bg，也直接置空 */
+}
+
+/* 关掉章节页用到的所有封面“叠层”实现 */
+body.has-cover-bg::before {
+  content: none !important;
+}
+
+.chapter-container::before {
+  content: none !important;
+}
+
+.chapter-cover-bg,
+.chapter-cover-bg::after {
+  display: none !important;
+}
