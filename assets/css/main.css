@@ -144,7 +144,7 @@ body {
 }
 
 .dropdown-menu a {
-  font-size: 14.5px;
+  font-size: 13.5px;
   display: block;
   padding: 8px 14px;
   color: #fff;
@@ -243,12 +243,12 @@ body {
 }
 
 .news-date {
-  font-size: 12px;
+  font-size: 13px;
   color: #6A7180
 }
 
 .news-title {
-  font-size: 13px
+  font-size: 14px
 }
 
 /* 底部章节网格 */
@@ -390,7 +390,8 @@ body.has-cover-bg {
   text-align: center;
   color: #fff;
   background: var(--brand);
-  padding: 16px 10px position: static !important;
+  padding: 16px 10px;
+  position: static !important;
   /* 防止被设置成 fixed/absolute */
   display: block;
   clear: both;
@@ -576,10 +577,12 @@ textarea {
 
 /* 确保本页 footer 不悬空 */
 .news-page .site-footer {
-  position: static !important;
-  clear: both;
-  width: 100%;
-  margin-top: 32px;
+  position: fixed !important;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  margin-top: 0 !important;
 }
 
 .news-page .panel-title {
@@ -649,4 +652,84 @@ body.has-cover-bg::before {
 .chapter-cover-bg,
 .chapter-cover-bg::after {
   display: none !important;
+}
+
+/* 只给“品牌色链接”设深蓝 */
+.brand-link {
+  color: var(--brand) !important;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.brand-link:visited {
+  color: var(--brand) !important;
+}
+
+.brand-link:hover {
+  filter: brightness(0.95);
+}
+
+/* === mobile: show side gradients on ALL pages (home/about/news/chapter) === */
+@media (max-width:560px) {
+
+  /* 别把侧边宽度设成 0；给移动端一个较窄的值即可 */
+  :root {
+    --side-grad-w: 140px !important;
+  }
+
+  /* 想更内一点就 160/180 */
+
+  /* 恢复移动端的 body 背景为两侧渐变 + 纸色 */
+  body,
+  body.has-cover-bg {
+    /* 章节页也统一用同样的背景 */
+    background:
+      linear-gradient(to right,
+        rgba(13, 41, 80, 1) 0, rgba(13, 41, 80, .45) 64px, rgba(13, 41, 80, 0) 128px) left / var(--side-grad-w) 100% no-repeat,
+      linear-gradient(to left,
+        rgba(122, 27, 110, 1) 0, rgba(122, 27, 110, .45) 64px, rgba(122, 27, 110, 0) 128px) right / var(--side-grad-w) 100% no-repeat,
+      var(--paper) !important;
+  }
+}
+
+/* 解除旧的 470px 限制，让 PDF 可占满它那一列 */
+.pdf-frame {
+  max-width: none !important;
+  width: 100% !important;
+  /* 保持撑满所在列 */
+}
+
+/* 左列（PDF）:右列（文字） = 3:2，比原来更宽 */
+.chapter-container .panel>div[style*="display:grid"] {
+  grid-template-columns: 5fr 3fr !important;
+  /* 可试 4fr 3fr / 5fr 3fr */
+  column-gap: 20px !important;
+  /* PDF 和文字间距，想更近改 10 */
+}
+
+/* 章节页：把右侧文字框整体向下挪一点 */
+.chapter-container .panel>div[style*="display:grid"]>aside,
+.chapter-container .panel>div[style*="display:grid"]>div:last-child {
+  margin-top: 50px !important;
+  /* 往下挪的距离：改成 12/20/24px 都行 */
+}
+
+/* 手机上可以少挪一点（可选） */
+@media (max-width:560px) {
+
+  .chapter-container .panel>div[style*="display:grid"]>aside,
+  .chapter-container .panel>div[style*="display:grid"]>div:last-child {
+    margin-top: 8px !important;
+  }
+}
+
+.dropdown-menu a.locked {
+  color: rgba(255, 255, 255, 0.55) !important;
+  /* 变暗 */
+  pointer-events: none;
+  /* 不可点 */
+  cursor: default;
+  text-decoration: none !important;
+  opacity: 0.9;
+  /* 细微降亮度；想更淡可 0.8 */
 }
