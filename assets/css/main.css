@@ -507,6 +507,15 @@ body.has-cover-bg {
   line-height: 1.8;
 }
 
+.about-page .site-footer {
+  position: fixed !important;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  margin-top: 32 !important;
+}
+
 /* 章节页：PDF预览更小（保持A4比例），大约上一版的一半 */
 .pdf-frame {
   max-width: 470px;
