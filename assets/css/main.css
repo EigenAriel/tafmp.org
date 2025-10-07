@@ -760,3 +760,27 @@ body.has-cover-bg::before {
   /* 不做下移动画 */
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .28));
 }
+
+/* === remove footer globally === */
+:root {
+  --footer-h: 0px !important;
+}
+
+/* 任何用到 footer 高度的计算都归零 */
+.about-page .site-footer,
+.news-page .site-footer {
+  display: none !important;
+}
+
+/* 隐藏所有页脚 */
+
+/* 清理之前为 footer 预留的空间/高度 */
+.about-page .container,
+.news-page .container,
+{
+padding-bottom: 0 !important;
+min-height: auto !important;
+/* 若你有 calc(100vh - header - footer) 之类，这里归回自然高度 */
+display: block !important;
+/* 覆盖某页可能设置过的 flex 布局 */
+}
