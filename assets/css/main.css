@@ -742,3 +742,21 @@ body.has-cover-bg::before {
   opacity: 0.9;
   /* 细微降亮度；想更淡可 0.8 */
 }
+
+.chapter-grid a.locked,
+.chapter-grid .chapter-card.locked,
+.chapter-grid .chapter-card.unpublished {
+  pointer-events: none;
+  /* 禁用点击/触控 */
+  cursor: default;
+  /* 光标不显示手型 */
+}
+
+.chapter-grid .chapter-card.locked .overlay .icon,
+.chapter-grid .chapter-card.unpublished .overlay .icon {
+  opacity: 1;
+  /* 常显锁头 */
+  transform: none;
+  /* 不做下移动画 */
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .28));
+}
